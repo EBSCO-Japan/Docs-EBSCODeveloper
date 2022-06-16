@@ -1,0 +1,1576 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "The PublicationIQ service provides the ability to search for publications designated as a part of a customer's collection.  Access to PublicationIQ requires a Publication Finder customer profile.  A profile password is optional.  If a password is supplied, it must be a valid password assigned to the Publication Finder customer profile.  If the password is omitted, the request will only be honored if the Publication Finder customer profile allows guest access in the environment where you are making the request.  For example, if you would like to make a request to PublicationIQ in the sandbox environment without a password, guest access must be enabled for the Publication Finder customer profile in the sandbox environment.  The same is true in the production environment.  The interactive documentation below uses the sandbox environment.  In order to gain access to the PublicationIQ sandbox environment, please contact EBSCO customer support.",
+    "termsOfService": "",
+    "version": "1.0.0",
+    "title": "EBSCO PublicationIQ",
+    "license": {
+      "name": "Copyright EBSCO",
+      "url": "https://www.ebsco.com/terms-of-use"
+    }
+  },
+  "host": "sandbox.ebsco.io",
+  "basePath": "/pf/pfaccount",
+  "schemes": [
+    "https"
+  ],
+  "tags": [
+    {
+      "name": "Alpha Browser Resource"
+    },
+    {
+      "name": "Package Resources"
+    },
+    {
+      "name": "Title Resources"
+    }
+  ],
+  "paths": {
+    "/{profile}/allpackages": {
+      "get": {
+        "tags": [
+          "Package Resources"
+        ],
+        "summary": "Get all Packages",
+        "description": "This resource allows you to retrieve a list of all packages from EPKB limited to a single customer ID. The response will reflect the context of the EBSCO customer ID included in the request.  Access to PublicationIQ requires a Publication Finder customer profile.  A profile password is optional.  If a password is supplied, it must be a valid password assigned to the Publication Finder customer profile.  If the password is omitted, the request will only be honored if the Publication Finder customer profile allows guest access in the environment where you are making the request.  For example, if you would like to make a request to PublicationIQ in the sandbox environment without a password, guest access must be enabled for the Publication Finder customer profile in the sandbox environment.  The same is true in the production environment.  This documentation uses the sandbox environment.  In order to gain access to the PublicationIQ sandbox environment, please contact EBSCO customer support.\n\n",
+        "operationId": "findAllPackagesUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "sessionid",
+            "in": "query",
+            "description": "Session ID.  If the Session ID is provided, it improves the experience of using the publications search.  sessionid is an optional parameter.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "contenttype",
+            "in": "query",
+            "description": "Limits the results by type of package content. Valid values are all, aggregatedfulltext, abstractandindex, ebook, ejournal, print, unknown and onlinereference. It is also valid to use 0 for all, 1 for aggregated full text, 2 for abstract and index, 3 for ebook, 4 for ejournal, 5 for print, 6 for unknown or 7 for online reference.",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "all",
+              "aggregatedfulltext",
+              "abstractandindex",
+              "ebook",
+              "ejournal",
+              "print",
+              "unknown",
+              "onlinereference"
+            ]
+          },
+          {
+            "name": "profile",
+            "in": "path",
+            "description": "A valid EBSCO customer profile in the form of custid.groupid.profileid.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "header",
+            "description": "Profile Password (optional). If a password is supplied, it must be a valid password assigned to the customer profile. If omitted, the request will only be honored if the customer profile allows guest access.",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK, List of all Packages",
+            "schema": {
+              "$ref": "#/definitions/GetAllPackagesResult"
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "502": {
+            "description": "Bad Gateway"
+          },
+          "503": {
+            "description": "Service Unavailable"
+          }
+        }
+      }
+    },
+    "/{profile}/alphabrowser/menu/{localeid}": {
+      "get": {
+        "tags": [
+          "Alpha Browser Resource"
+        ],
+        "summary": "Get Alpha Browser Menu",
+        "operationId": "getAlphaBrowserMenuUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "description": "This resource allows you to retrieve an Alpha Browser menu by locale ID and resource type.  Access to PublicationIQ requires a Publication Finder customer profile.  A profile password is optional.  If a password is supplied, it must be a valid password assigned to the Publication Finder customer profile.  If the password is omitted, the request will only be honored if the Publication Finder customer profile allows guest access in the environment where you are making the request.  For example, if you would like to make a request to PublicationIQ in the sandbox environment without a password, guest access must be enabled for the Publication Finder customer profile in the sandbox environment.  The same is true in the production environment.  This documentation uses the sandbox environment.  In order to gain access to the PublicationIQ sandbox environment, please contact EBSCO customer support.",
+        "parameters": [
+          {
+            "name": "localeid",
+            "in": "path",
+            "description": "Locale Identifier.  For more information on locale identifiers, see [Get Alpha Browser Menu](/knowledge-services/publicationiq/docs/get-alpha-browser-menu).",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "sessionid",
+            "in": "query",
+            "description": "Session ID.  If provided, improves the experience of using the publications search. sessionid is an optional parameter.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "resourcetype",
+            "in": "query",
+            "description": "Type of resource.  Valid values are book or journal.  It is also valid to use 0 for book or 1 for journal.",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "book",
+              "journal"
+            ]
+          },
+          {
+            "name": "menuid",
+            "in": "query",
+            "description": "Menu ID. Used for filtering menus in position 1. The menu id must be a value greater than or equal to 65 and less than or equal to 90.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "profile",
+            "in": "path",
+            "description": "A valid EBSCO customer profile in the form of custid.groupid.profileid.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "header",
+            "description": "Profile Password (optional). If a password is supplied, it must be a valid password assigned to the customer profile. If omitted, the request will only be honored if the customer profile allows guest access.",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK, Alpha Browser Menu",
+            "schema": {
+              "$ref": "#/definitions/AlphaBrowserMenuResult"
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "502": {
+            "description": "Bad Gateway"
+          },
+          "503": {
+            "description": "Service Unavailable"
+          }
+        }
+      }
+    },
+    "/{profile}/packages": {
+      "get": {
+        "tags": [
+          "Package Resources"
+        ],
+        "summary": "Get Packages by Package Name",
+        "description": "This resource allows you to search for packages and returns a list of packages from EPKB. The list is limited to a single customer ID. The response will reflect the context of the EBSCO customer ID included in the request.  Access to PublicationIQ requires a Publication Finder customer profile.  A profile password is optional.  If a password is supplied, it must be a valid password assigned to the Publication Finder customer profile.  If the password is omitted, the request will only be honored if the Publication Finder customer profile allows guest access in the environment where you are making the request.  For example, if you would like to make a request to PublicationIQ in the sandbox environment without a password, guest access must be enabled for the Publication Finder customer profile in the sandbox environment.  The same is true in the production environment.  This documentation uses the sandbox environment.  In order to gain access to the PublicationIQ sandbox environment, please contact EBSCO customer support.",
+        "operationId": "findPackagesByNameUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "sessionid",
+            "in": "query",
+            "description": "Session ID.  If provided, improves the experience of using the publications search. sessionid is an optional parameter.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "description": "Keyword search that is applied to limit the results to packages that have the search term in the package name.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Page Offset. Starts at 1.",
+            "required": true,
+            "type": "integer",
+            "default": 1,
+            "format": "int64"
+          },
+          {
+            "name": "count",
+            "in": "query",
+            "description": "The maximum number of results to return in the response. Maximum count value is 100.",
+            "required": true,
+            "type": "integer",
+            "default": 50,
+            "format": "int32"
+          },
+          {
+            "name": "contenttype",
+            "in": "query",
+            "description": "Limits the results by type of package content. Valid values are all, aggregatedfulltext, abstractandindex, ebook, ejournal, print, unknown and onlinereference. It is also valid to use 0 for all, 1 for aggregated full text, 2 for abstract and index, 3 for ebook, 4 for ejournal, 5 for print, 6 for unknown or 7 for online reference.",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "all",
+              "aggregatedfulltext",
+              "abstractandindex",
+              "ebook",
+              "ejournal",
+              "print",
+              "unknown",
+              "onlinereference"
+            ]
+          },
+          {
+            "name": "orderby",
+            "in": "query",
+            "description": "Valid values are packagename and relevance.",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "relevance",
+              "packagename"
+            ]
+          },
+          {
+            "name": "profile",
+            "in": "path",
+            "description": "A valid EBSCO customer profile in the form of custid.groupid.profileid.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "header",
+            "description": "Profile Password (optional). If a password is supplied, it must be a valid password assigned to the customer profile. If omitted, the request will only be honored if the customer profile allows guest access.",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK, List of Packages",
+            "schema": {
+              "$ref": "#/definitions/GetPackagesResult"
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "502": {
+            "description": "Bad Gateway"
+          },
+          "503": {
+            "description": "Service Unavailable"
+          }
+        }
+      }
+    },
+    "/{profile}/packages/{packageid}/titles/{kbid}": {
+      "get": {
+        "tags": [
+          "Title Resources"
+        ],
+        "summary": "Get Publication by Title ID",
+        "description": "This resource allows you to retrieve a publication by title ID.  Access to PublicationIQ requires a Publication Finder customer profile.  A profile password is optional.  If a password is supplied, it must be a valid password assigned to the Publication Finder customer profile.  If the password is omitted, the request will only be honored if the Publication Finder customer profile allows guest access in the environment where you are making the request.  For example, if you would like to make a request to PublicationIQ in the sandbox environment without a password, guest access must be enabled for the Publication Finder customer profile in the sandbox environment.  The same is true in the production environment.  This documentation uses the sandbox environment.  In order to gain access to the PublicationIQ sandbox environment, please contact EBSCO customer support.",
+        "operationId": "getPublicationUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "packageid",
+            "in": "path",
+            "description": "Package ID",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "kbid",
+            "in": "path",
+            "description": "Title ID",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "sessionid",
+            "in": "query",
+            "description": "Session ID.  If session ID is used, it will improve the experience of using the publications search.  sessionid is an optional parameter.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "profile",
+            "in": "path",
+            "description": "A valid EBSCO customer profile in the form of customerid.groupid.profileid.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "header",
+            "description": "Profile Password (optional). If a password is supplied, it must be a valid password assigned to the customer profile. If omitted, the request will only be honored if the customer profile allows guest access.",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK, Publication",
+            "schema": {
+              "$ref": "#/definitions/Record"
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "502": {
+            "description": "Bad Gateway"
+          },
+          "503": {
+            "description": "Service Unavailable"
+          }
+        }
+      }
+    },
+    "/{profile}/publications": {
+      "get": {
+        "tags": [
+          "Title Resources"
+        ],
+        "summary": "Get Publications by Specified Title Attributes",
+        "description": "This resource allows you to search for publications and returns a list of publications.  The list is limited to a single customer ID.  The response will reflect the context of the EBSCO customer ID included in the request.  Access to PublicationIQ requires a Publication Finder customer profile.  A profile password is optional.  If a password is supplied, it must be a valid password assigned to the Publication Finder customer profile.  If the password is omitted, the request will only be honored if the Publication Finder customer profile allows guest access in the environment where you are making the request.  For example, if you would like to make a request to PublicationIQ in the sandbox environment without a password, guest access must be enabled for the Publication Finder customer profile in the sandbox environment.  The same is true in the production environment.  This documentation uses the sandbox environment.  In order to gain access to the PublicationIQ sandbox environment, please contact EBSCO customer support.<p>&nbsp;&nbsp;</p><p>**Please Note:**  When creating logic to interpret the response coverage details, we recommend that you use the following pseudocode example as a guide:  
+		<p>&nbsp;&nbsp;</p><p>
+		  &nbsp;&nbsp;If Coverage Statement is NOT Null THEN (Note: empty string, \"\", should be treated as a valid coverage statement)<br> 
+		  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Show Coverage Statement <br>
+		  &nbsp;&nbsp;ELSE IF Custom Coverage Dates exist THEN<br> 
+		  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF Custom Coverage Date = \"01/01/0001\" THEN <br>
+		  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Do not display any coverage<br>
+		  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ELSE <br>
+		  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Show Custom Coverage<br>
+		  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END IF <br>
+		  &nbsp;&nbsp;ELSE <br>
+		  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Show Managed Coverage<br>
+		  &nbsp;&nbsp;END IF
+		",
+        "operationId": "findPublicationsUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "resourcetypefacet",
+            "in": "query",
+            "description": "Resource type facet filter. Limits the results.  resourcetypefacet is an optional parameter.",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "packagefacet",
+            "in": "query",
+            "description": "Package type facet filter. Limits the results.  packagefacet is an optional parameter.",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "subjectfacet",
+            "in": "query",
+            "description": "Subject type facet filter. Limits the results.  subjectfacet is an optional parameter.",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "sessionid",
+            "in": "query",
+            "description": "Session ID.  If session ID is used, it will improve the experience of using the publications search.  sessionid is an optional parameter.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "description": "Keyword search that is applied to limit the results to publications that have the search term in the title name.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Page Offset. Starts at 1.",
+            "required": true,
+            "type": "integer",
+            "default": 1,
+            "format": "int64"
+          },
+          {
+            "name": "count",
+            "in": "query",
+            "description": "The maximum number of results to return in the response. Maximum count value is 100.",
+            "required": true,
+            "type": "integer",
+            "default": 50,
+            "format": "int32"
+          },
+          {
+            "name": "orderby",
+            "in": "query",
+            "description": "Valid values are titlename and relevance.",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "relevance",
+              "titlename"
+            ]
+          },
+          {
+            "name": "searchfield",
+            "in": "query",
+            "description": "Field to search. Valid values are titlename, subject, isxn or publisher.",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "titlename",
+              "subject",
+              "isxn",
+              "publisher"
+            ]
+          },
+          {
+            "name": "includefacets",
+            "in": "query",
+            "description": "Specify **true** if search is required to include facet information, **false** otherwise.",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "true",
+              "false"
+            ]
+          },
+          {
+            "name": "searchtype",
+            "in": "query",
+            "description": "Type of search. Search types are any, contains, exactmatch, beginswith, proximity, exactphrase and advanced. Searchtype is an optional parameter and defaults to contains if not provided.",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "any",
+              "contains",
+              "exactmatch",
+              "beginswith",
+              "proximity",
+              "exactphrase",
+              "advanced"
+            ]
+          },
+          {
+            "name": "resourcetype",
+            "in": "query",
+            "description": "Type of resource. Valid values are Journal, Newsletter, Report, Proceedings, Web site, Newspaper, Unspecified, Book, Book Series, Database, Thesis/Dissertation, Streaming Audio, Streaming, Video or Audio Book.  resourcetype is an optional parameter.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "alphamenufacet",
+            "in": "query",
+            "description": "Alpha Menu Facet facet filter. Limits the results.  alphamenufacet is an optional parameter.  One alphamenufacet is supported in a query.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "ispeerreviewed",
+            "in": "query",
+            "description": "Specify **true** if search is required to include facet information for \"isPeerReviewed\" title metadata, **false** otherwise.",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "true",
+              "false"
+            ]
+          },
+          {
+            "name": "subjectfacetschemafilter",
+            "in": "query",
+            "description": "Specifies the schema to filter by for the subjects facet.  Valid values are tli, bisac, medical or library of congress.",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "tli",
+              "bisac",
+              "medical",
+              "library of congress"
+            ]
+          },
+          {
+            "name": "subjectfacetcount",
+            "in": "query",
+            "description": "Maximum number of subject facets to be returned.",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "packagefacetcount",
+            "in": "query",
+            "description": "Maximum number of package facets to be returned.",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "alphamenufacetcount",
+            "in": "query",
+            "description": "Maximum number of alphamenu facets to be returned.",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "resourcetypefacetcount",
+            "in": "query",
+            "description": "Maximum number of resource type facets to be returned.",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "source",
+            "in": "query",
+            "description": "Source of the request.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "platform",
+            "in": "query",
+            "description": "Platform that the search is made from.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "profile",
+            "in": "path",
+            "description": "A valid EBSCO customer profile in the form of customerid.groupid.profileid.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "header",
+            "description": "Profile Password (optional).  If a password is supplied, it must be a valid password assigned to the customer profile.  If omitted, the request will only be honored if the customer profile allows guest access.",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK, List of Publications",
+            "schema": {
+              "$ref": "#/definitions/PublicationSearchResultWrapper"
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "502": {
+            "description": "Bad Gateway"
+          },
+          "503": {
+            "description": "Service Unavailable"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Facets": {
+      "type": "object",
+      "properties": {
+        "Subjects": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SubjectFacet"
+          }
+        },
+        "ResourceTypes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ResourceTypeFacet"
+          }
+        },
+        "Packages": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PackageFacet"
+          }
+        },
+        "AlphaMenus": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AlphaMenuFacet"
+          }
+        },
+        "IsPeerReviewed": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/IsPeerReviewedFacet"
+          }
+        }
+      }
+    },
+    "Query": {
+      "type": "object",
+      "properties": {
+        "BooleanOperator": {
+          "type": "string",
+          "description": "Boolean Operator",
+          "example": "Boolean Operator"
+        },
+        "Term": {
+          "type": "string",
+          "description": "Query Term",
+          "example": "Query Term"
+        }
+      }
+    },
+    "Sessiondetails": {
+      "type": "object",
+      "properties": {
+        "sessionid": {
+          "type": "string",
+          "description": "Session ID",
+          "example": "1996535790953948603"
+        }
+      }
+    },
+    "PfAlternateTitle": {
+      "type": "object",
+      "properties": {
+        "alternateTitle": {
+          "type": "string",
+          "description": "Alternate Title",
+          "example": "Boston Pilot"
+        },
+        "titleType": {
+          "type": "string",
+          "description": "Title Type",
+          "example": "b202"
+        }
+      }
+    },
+    "PublicationSearchResult": {
+      "type": "object",
+      "properties": {
+        "Sessiondetails": {
+          "$ref": "#/definitions/Sessiondetails"
+        },
+        "Statistics": {
+          "$ref": "#/definitions/Statistics"
+        },
+        "Data": {
+          "$ref": "#/definitions/Data"
+        }
+      }
+    },
+    "PfSubject": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "BISAC",
+            "TLI"
+          ],
+          "description": "The type of subject.  Valid values are BISAC and TLI.",
+          "example": "BISAC"
+        },
+        "name": {
+          "type": "string",
+          "description": "Subject Name",
+          "example": "Subject Name"
+        }
+      }
+    },
+    "PFEmbargoPeriod": {
+      "type": "object",
+      "required": [
+        "embargoUnit",
+        "embargoValue"
+      ],
+      "description": "Embargo Period",
+      "properties": {
+        "embargoUnit": {
+          "type": "string",
+          "description": "The unit of time to use for the embargo - Days, Weeks, Months or Years.",
+          "example": "Days",
+          "enum": [
+            "Days",
+            "Weeks",
+            "Months",
+            "Years"
+          ]
+        },
+        "embargoValue": {
+          "type": "integer",
+          "description": "The embargo value (number of embargoUnits).  A Null value means there is no embargo.",
+          "example": "1"
+        }
+      }
+    },
+    "VisibilityData": {
+      "type": "object",
+      "required": [
+        "isHidden"
+      ],
+      "description": "Visibility",
+      "properties": {
+        "isHidden": {
+          "type": "boolean",
+          "description": "Is Hidden",
+          "example": true
+        },
+        "reason": {
+          "type": "string",
+          "description": "Reason",
+          "example": "Hidden by Customer"
+        }
+      }
+    },
+    "VisibilityDataKbid": {
+      "type": "object",
+      "required": [
+        "isHidden"
+      ],
+      "description": "Visibility",
+      "properties": {
+        "isHidden": {
+          "type": "boolean",
+          "description": "Is Hidden",
+          "example": true
+        }
+      }
+    },
+    "IsPeerReviewedFacet": {
+      "type": "object",
+      "properties": {
+        "isPeerReviewed": {
+          "type": "boolean",
+          "description": "Is it Peer Reviewed",
+          "example": true
+        },
+        "count": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Count",
+          "example": 9
+        }
+      }
+    },
+    "SearchRequestGet": {
+      "type": "object",
+      "properties": {
+        "RequestParams": {
+          "$ref": "#/definitions/RequestParams"
+        },
+        "SearchCriteriaWithActions": {
+          "$ref": "#/definitions/SearchCriteriaWithActions"
+        }
+      }
+    },
+    "RequestParams": {
+      "type": "object",
+      "properties": {
+        "sessionId": {
+          "type": "string",
+          "description": "Session ID",
+          "example": "11223344"
+        },
+        "customerId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Customer ID",
+          "example": "1123"
+        }
+      }
+    },
+    "PfContributor": {
+      "type": "object",
+      "properties": {
+        "contributor": {
+          "type": "string",
+          "description": "Contributor Name",
+          "example": "Jon Doe"
+        },
+        "type": {
+          "type": "string",
+          "description": "Type of contributor. Valid values are Author, Illustrator, and Editor.",
+          "example": "Editor"
+        }
+      }
+    },
+    "PsmPackage": {
+      "type": "object",
+      "properties": {
+        "contentType": {
+          "type": "string",
+          "description": "Content type. Valid values are All, AggregatedFullText, AbstractandIndex, EBook, EJournal, Print, Unknown and OnlineReference.",
+          "example": "EBook"
+        },
+        "customCoverage": {
+          "$ref": "#/definitions/CustomCoverage"
+        },
+        "isCustom": {
+          "type": "boolean",
+          "description": "isCustom is true if a customer is the vendor.  The customer vendor is used for custom packages.",
+          "example": true
+        },
+        "isSelected": {
+          "type": "boolean",
+          "description": "Indicates if the packages is selected in a customer's account.",
+          "example": true
+        },
+        "isTokenNeeded": {
+          "type": "boolean",
+          "description": "Field to indicate if a token is needed",
+          "example": true
+        },
+        "packageId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Package Identifier",
+          "example": 175
+        },
+        "packageName": {
+          "type": "string",
+          "description": "Package Name",
+          "example": "Health Source: Nursing/Academic Edition"
+        },
+        "packageType": {
+          "type": "string",
+          "description": "Package Type.  Valid values are Selectable, Complete, Variable and Custom.",
+          "example": "Complete"
+        },
+        "selectedCount": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Numeric value indicating the number of titles in packages selected in the customer account.",
+          "example": 328
+        },
+        "titleCount": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Numeric value indicating the title count of the package.",
+          "example": 328
+        },
+        "vendorId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "EBSCO KB's unique identifier for the provider.  In EPKB, this is 'VendorID'.",
+          "example": 19
+        },
+        "vendorName": {
+          "type": "string",
+          "description": "Provider name.  In EPKB, this is the 'VendorName'.",
+          "example": "EBSCO"
+        },
+        "visibilityData": {
+          "$ref": "#/definitions/VisibilityData"
+        }
+      }
+    },
+    "GetAllPackagesResult": {
+      "type": "object",
+      "properties": {
+        "packagesList": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AllPackagesResponse"
+          }
+        },
+        "totalResults": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Total Results",
+          "example": 341
+        }
+      }
+    },
+    "SearchCriteriaWithActions": {
+      "type": "object",
+      "properties": {
+        "QueriesWithAction": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/QueriesWithAction"
+          }
+        }
+      }
+    },
+    "AlphaBrowserMenuResult": {
+      "type": "object",
+      "properties": {
+        "position 0": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AlphaBrowserMenuItem"
+          }
+        },
+        "position 1": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AlphaBrowserMenuItem"
+          }
+        },
+        "position 2": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AlphaBrowserMenuItem"
+          }
+        },
+        "position 3": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AlphaBrowserMenuItem"
+          }
+        }
+      }
+    },
+    "PfToken": {
+      "type": "object",
+      "properties": {
+        "factName": {
+          "type": "string",
+          "description": "Fact Name",
+          "example": "[[SiteID]]"
+        },
+        "value": {
+          "type": "string",
+          "description": "Value",
+          "example": "1234567"
+        }
+      }
+    },
+    "ResourceTypeFacet": {
+      "type": "object",
+      "properties": {
+        "ResourceTypes": {
+          "type": "string",
+          "description": "Resource Type.  Valid values are all, journal, newsletter, report, proceedings, website, newspaper, unspecified, book, bookseries, database, thesisdissertation, streamingaudio, streamingvideo, and audiobook.",
+          "example": "book"
+        },
+        "count": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Count",
+          "example": 358
+        }
+      }
+    },
+    "PfCustomerResource": {
+      "type": "object",
+      "properties": {
+        "titleId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Title ID",
+          "example": 1157191
+        },
+        "packageId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "EBSCO KB's unique identifier for the package.  In EPKB, this is 'PkgID'.",
+          "example": 1117849
+        },
+        "packageName": {
+          "type": "string",
+          "description": "Name of the Package. In EPKB, this is 'PkgName'.",
+          "example": "Health & Wellness Resource Center (w/alt health module)"
+        },
+        "packageType": {
+          "type": "string",
+          "description": "Package Type. Valid values are Selectable, Complete, Variable and Custom.",
+          "example": "Complete"
+        },
+        "isPackageCustom": {
+          "type": "boolean",
+          "description": "Is the Package Custom.",
+          "example": false
+        },
+        "vendorId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "EBSCO KB's unique identifier for the provider.  In EPKB, this is 'VendorID'.",
+          "example": 19
+        },
+        "vendorName": {
+          "type": "string",
+          "description": "Provider name.  In EPKB, this is the 'VendorName'.",
+          "example": "EBSCO"
+        },
+        "locationId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Location ID",
+          "example": 1033
+        },
+        "isSelected": {
+          "type": "boolean",
+          "description": "Indicates if selected in a customer's account.",
+          "example": false
+        },
+        "isTokenNeeded": {
+          "type": "boolean",
+          "description": "Field to indicate if a token is needed",
+          "example": false
+        },
+        "managedCoverageList": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CustomCoverage"
+          }
+        },
+        "customCoverageList": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CustomCoverage"
+          }
+        },
+        "coverageStatement": {
+          "type": "string",
+          "description": "Coverage Statement",
+          "example": "Issues on or after 6/1/1992"
+        },
+        "managedEmbargoPeriod": {
+          "$ref": "#/definitions/PFEmbargoPeriod"
+        },
+        "customEmbargoPeriod": {
+          "$ref": "#/definitions/PFEmbargoPeriod"
+        },
+        "url": {
+          "type": "string",
+          "description": "url",
+          "example": "http://search.ebscohost.com/direct.asp?db=h9i&jid=6IJ3&scope=site"
+        },
+        "packageToken": {
+          "$ref": "#/definitions/PfToken"
+        },
+        "vendorToken": {
+          "$ref": "#/definitions/PfToken"
+        },
+        "note": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PfNote"
+          }
+        },
+        "userDefinedFields": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UserDefinedField"
+          }
+        },
+        "visibilityData": {
+          "$ref": "#/definitions/VisibilityDataKbid"
+        },
+        "linkOutTargetUrl": {
+          "type": "string",
+          "description": "Link Out Target URL",
+          "example": "https://api.ebsco.io/pf/externallink?params=rO0ABXNyAEhjb20uZWJzY28ua25vd2xlZGdlYmFzZS5wZmFwaS5zZXJ2aWNlLmxpbmtidWlsZGVyLkV4dGVybmFsTGlua1BhcmFtZXRlcnNndKNO6WP5LQIAC0wACmN1c3RvbWVySWR0ABJMamF2YS9sYW5nL1N0cmluZztMAAdncm91cElkcQB-AAFMAAZob3N0SXBxAH4AAUwACXBhY2thZ2VJZHQAEExqYXZhL2xhbmcvTG9uZztMAAhwbGF0Zm9ybXEAfgABTAAJcHJvZmlsZUlkcQB-AAFMAAlzZXNzaW9uTm9xAH4AAkwABnNvdXJjZXEAfgABTAAJdGltZXN0YW1wcQB-AAJMAAd0aXRsZUlkcQB-AAJMAAZ1c2VySWRxAH4AAnhwdAAEZGVtb3QABG1haW50AAwxMC4yNi4xNzIuNTFzcgAOamF2YS5sYW5nLkxvbmc7i-SQzI8j3wIAAUoABXZhbHVleHIAEGphdmEubGFuZy5OdW1iZXKGrJUdC5TgiwIAAHhwAAAAAAAAD1ZwdAAIcGZpZ3Vlc3RzcQB-AAfkSuFGttYaRXBzcQB-AAcAAAFr4O71ZHNxAH4ABwAAAAAAC6l4c3EAfgAHAAAAAAAABZZ"
+        },
+        "targetUrl": {
+          "type": "string",
+          "description": "Target URL",
+          "example": "http://target.url.io"
+        }
+      }
+    },
+    "Record": {
+      "type": "object",
+      "properties": {
+        "titleId": {
+          "type": "string",
+          "description": "Title ID",
+          "example": "1157191"
+        },
+        "titleName": {
+          "type": "string",
+          "description": "Title Name",
+          "example": "Boston Pilot (Boston, MA)"
+        },
+        "edition": {
+          "type": "string",
+          "description": "Title Edition",
+          "example": "1"
+        },
+        "description": {
+          "type": "string",
+          "description": "Title Description",
+          "example": "Description Test."
+        },
+        "isPeerReviewed": {
+          "type": "boolean",
+          "description": "Is this title peer reviewed.",
+          "example": false
+        },
+        "publisherName": {
+          "type": "string",
+          "description": "Publisher Name",
+          "example": "www.ebsco.com"
+        },
+        "identifiersList": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/IdentifiersList"
+          }
+        },
+        "subjectsList": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PfSubject"
+          }
+        },
+        "isTitleCustom": {
+          "type": "boolean",
+          "description": "Is this a custom title owned by the customer.",
+          "example": true
+        },
+        "pubType": {
+          "type": "string",
+          "description": "Type of publication. Valid values are journal, newsletter, report, proceedings, website, newspaper, unspecified, book, bookseries, database, thesisdissertation, streamingaudio, streamingvideo, and audiobook.",
+          "example": "Book"
+        },
+        "contributorsList": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PfContributor"
+          }
+        },
+        "customerResourcesList": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PfCustomerResource"
+          }
+        },
+        "duration": {
+          "type": "string",
+          "description": "Duration",
+          "example": "123"
+        },
+        "frequency": {
+          "type": "string",
+          "description": "Frequency",
+          "example": "52"
+        },
+        "alternateTitleList": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PfAlternateTitle"
+          }
+        }
+      }
+    },
+    "SubjectFacet": {
+      "type": "object",
+      "properties": {
+        "SubjectName": {
+          "type": "string",
+          "description": "Subject",
+          "example": "ART / General"
+        },
+        "count": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Count",
+          "example": 25
+        },
+        "id": {
+          "type": "string",
+          "description": "ID",
+          "example": "8005"
+        },
+        "parentId": {
+          "type": "string",
+          "description": "Parent ID",
+          "example": "null"
+        }
+      }
+    },
+    "CustomCoverage": {
+      "type": "object",
+      "required": [
+        "beginCoverage",
+        "endCoverage"
+      ],
+      "description": "Dates of Coverage",
+      "properties": {
+        "beginCoverage": {
+          "type": "string",
+          "description": "Coverage Start Date",
+          "example": "2003-01-01"
+        },
+        "endCoverage": {
+          "type": "string",
+          "description": "Coverage End Date",
+          "example": "2003-12-12"
+        }
+      }
+    },
+    "GetPackagesResult": {
+      "type": "object",
+      "properties": {
+        "packagesList": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PsmPackage"
+          }
+        },
+        "totalResults": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Total Results",
+          "example": 323
+        }
+      }
+    },
+    "Data": {
+      "type": "object",
+      "properties": {
+        "RecordFormat": {
+          "type": "string",
+          "description": "Record Format.  The format of the record (e.g., HTML, PDF, Video, etc.)",
+          "example": "HTML"
+        },
+        "Records": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Record"
+          }
+        }
+      }
+    },
+    "PublicationSearchResultWrapper": {
+      "type": "object",
+      "properties": {
+        "SearchRequestGet": {
+          "$ref": "#/definitions/SearchRequestGet"
+        },
+        "Facets": {
+          "$ref": "#/definitions/Facets"
+        },
+        "SearchResult": {
+          "$ref": "#/definitions/PublicationSearchResult"
+        }
+      }
+    },
+    "Statistics": {
+      "type": "object",
+      "properties": {
+        "TotalHits": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Total Hits",
+          "example": 815
+        },
+        "TotalSearchTime": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Total Search Time",
+          "example": 1729
+        }
+      }
+    },
+    "AlphaMenuFacet": {
+      "type": "object",
+      "properties": {
+        "AlphaMenu": {
+          "type": "string",
+          "description": "Alpha Menu",
+          "example": "AA"
+        },
+        "count": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Count",
+          "example": 1
+        }
+      }
+    },
+    "PfNote": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Unique identifier for the note",
+          "example": "309"
+        },
+        "custId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Customer ID",
+          "example": 1234
+        },
+        "noteName": {
+          "type": "string",
+          "description": "Note name",
+          "example": "Note-1"
+        },
+        "rank": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Rank",
+          "example": 1
+        },
+        "noteText": {
+          "type": "string",
+          "description": "Note text to be displayed on the menu",
+          "example": "Note-1 text."
+        },
+        "iconUrl": {
+          "type": "string",
+          "description": "If customer uses own icon for a note, this is its URL.  Null if no icon or using standard icon",
+          "example": "http://hostname.com/icon.png"
+        },
+        "iconId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Unique identifier for the icon",
+          "example": 45
+        },
+        "altText": {
+          "type": "string",
+          "description": "Text to show on mouse-over.",
+          "example": "forbidden"
+        },
+        "hoverText": {
+          "type": "string",
+          "description": "Hover text to show on mouse-over for the note",
+          "example": "Sample Icon Hover Text"
+        },
+        "linkUrl": {
+          "type": "string",
+          "description": "URL of the note link if any",
+          "example": "http://hostname.com"
+        },
+        "showOnFlags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "description": "Show on Flags",
+            "example": "LinkSource"
+          }
+        }
+      }
+    },
+    "AlphaBrowserMenuItem": {
+      "type": "object",
+      "properties": {
+        "menuId": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Menu ID",
+          "example": 65
+        },
+        "characters": {
+          "type": "string",
+          "description": "Characters",
+          "example": "A"
+        },
+        "order": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Order",
+          "example": 2
+        },
+        "count": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Count",
+          "example": 4487
+        }
+      }
+    },
+    "PackageFacet": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Package ID",
+          "example": "1615"
+        },
+        "Package": {
+          "type": "string",
+          "description": "Package Name",
+          "example": "Academic Search Complete"
+        },
+        "count": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Count",
+          "example": 15
+        }
+      }
+    },
+    "QueriesWithAction": {
+      "type": "object",
+      "properties": {
+        "Query": {
+          "$ref": "#/definitions/Query"
+        }
+      }
+    },
+    "IdentifiersList": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Identifier Value",
+          "example": 1
+        },
+        "source": {
+          "type": "string",
+          "description": "Resource Identifier",
+          "example": "AtoZ"
+        },
+        "subtype": {
+          "type": "integer",
+          "format": "int64",
+          "enum": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "description": "Sub-type for the identifier.  This is used by only some identifiers to designate Print, Online, etc.  Empty=0, Print=1, Online=2, Preceding=3, Succeeding=4, Regional=5, Linking=6 and Invalid=7",
+          "example": 1
+        },
+        "type": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "UserDefinedField": {
+      "type": "object",
+      "properties": {
+        "displayOnPublicationFinder": {
+          "type": "boolean",
+          "description": "Is displayed on the Publication Finder",
+          "example": true
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "ID",
+          "example": "a123"
+        },
+        "label": {
+          "type": "string",
+          "description": "User Defined Field Label",
+          "example": "Field A"
+        },
+        "value": {
+          "type": "string",
+          "description": "User Defined Field Value",
+          "example": "User Defined Field Value"
+        }
+      }
+    },
+    "AllPackagesResponse": {
+      "type": "object",
+      "properties": {
+        "packageId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Package Identifier",
+          "example": 22551
+        },
+        "packageName": {
+          "type": "string",
+          "description": "Package Name",
+          "example": "123Library eBooks"
+        },
+        "contentType": {
+          "type": "string",
+          "description": "Content type. Valid values are All, AggregatedFullText, AbstractandIndex, EBook, EJournal, Print, Unknown and OnlineReference.",
+          "example": "EBook"
+        }
+      }
+    }
+  }
+}
