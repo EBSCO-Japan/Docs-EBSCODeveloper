@@ -1,5 +1,5 @@
 # APIリファレンス
 
-{% swagger src="../../../.gitbook/assets/publicationiqv6.json" path="undefined" method="undefined" %}
+{% swagger src="../../../.gitbook/assets/publicationiqv6.json" path="/{profile}/allpackages" method="GET" %}
 [publicationiqv6.json](../../../.gitbook/assets/publicationiqv6.json)
 {% endswagger %}
