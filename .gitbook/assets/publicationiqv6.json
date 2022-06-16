@@ -390,20 +390,7 @@
           "Title Resources"
         ],
         "summary": "Get Publications by Specified Title Attributes",
-        "description": "This resource allows you to search for publications and returns a list of publications.  The list is limited to a single customer ID.  The response will reflect the context of the EBSCO customer ID included in the request.  Access to PublicationIQ requires a Publication Finder customer profile.  A profile password is optional.  If a password is supplied, it must be a valid password assigned to the Publication Finder customer profile.  If the password is omitted, the request will only be honored if the Publication Finder customer profile allows guest access in the environment where you are making the request.  For example, if you would like to make a request to PublicationIQ in the sandbox environment without a password, guest access must be enabled for the Publication Finder customer profile in the sandbox environment.  The same is true in the production environment.  This documentation uses the sandbox environment.  In order to gain access to the PublicationIQ sandbox environment, please contact EBSCO customer support.<p>&nbsp;&nbsp;</p><p>**Please Note:**  When creating logic to interpret the response coverage details, we recommend that you use the following pseudocode example as a guide:  
-		<p>&nbsp;&nbsp;</p><p>
-		  &nbsp;&nbsp;If Coverage Statement is NOT Null THEN (Note: empty string, \"\", should be treated as a valid coverage statement)<br> 
-		  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Show Coverage Statement <br>
-		  &nbsp;&nbsp;ELSE IF Custom Coverage Dates exist THEN<br> 
-		  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IF Custom Coverage Date = \"01/01/0001\" THEN <br>
-		  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Do not display any coverage<br>
-		  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ELSE <br>
-		  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Show Custom Coverage<br>
-		  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;END IF <br>
-		  &nbsp;&nbsp;ELSE <br>
-		  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Show Managed Coverage<br>
-		  &nbsp;&nbsp;END IF
-		",
+        "description": "This resource allows you to search for publications and returns a list of publications.  The list is limited to a single customer ID.  The response will reflect the context of the EBSCO customer ID included in the request.  Access to PublicationIQ requires a Publication Finder customer profile.  A profile password is optional.  If a password is supplied, it must be a valid password assigned to the Publication Finder customer profile.  If the password is omitted, the request will only be honored if the Publication Finder customer profile allows guest access in the environment where you are making the request.  For example, if you would like to make a request to PublicationIQ in the sandbox environment without a password, guest access must be enabled for the Publication Finder customer profile in the sandbox environment.  The same is true in the production environment.  This documentation uses the sandbox environment.  In order to gain access to the PublicationIQ sandbox environment, please contact EBSCO customer support.<p>&nbsp;&nbsp;</p><p>**Please Note:**  When creating logic to interpret the response coverage details, we recommend that you use the following pseudocode example as a guide:",
         "operationId": "findPublicationsUsingGET",
         "consumes": [
           "application/json"
