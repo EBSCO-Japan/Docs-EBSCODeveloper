@@ -4,7 +4,8 @@
 
 ## EBSCO Knowledge Services
 
-* [Publication IQ](EBSCOKnowledgeServices/PublicationIQ/APIReference.md)
+* [Publication IQ](ebsco-knowledge-services/apireference/README.md)
+  * [概要](ebsco-knowledge-services/apireference/gai-yao.md)
 
 ## Medical Point of Care API / Meds API
 
