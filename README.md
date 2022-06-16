@@ -1,8 +1,5 @@
-# API Docs
-
-APIのドキュメント　https://ebsco-japan.github.io/APIDocs/
-
-[![Gitbook Action Build](https://github.com/EBSCO-Japan/APIDocs/actions/workflows/gitbook.yml/badge.svg)](https://github.com/EBSCO-Japan/APIDocs/actions/workflows/gitbook.yml)
+# EBSCO Developer
+https://developer.ebsco.com/
 
 ## ご案内
 * この翻訳は、便宜的なものです。必ず、原文を参照してください。
