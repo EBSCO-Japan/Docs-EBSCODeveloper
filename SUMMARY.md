@@ -10,6 +10,7 @@
     * [環境](ebsco-knowledge-services/apireference/PublicationIQ/Overview/Environment.md)
     * [認証](ebsco-knowledge-services/apireference/PublicationIQ/Overview/Authentication.md)
     * [レスポンスとエラーコード](ebsco-knowledge-services/apireference/PublicationIQ/Overview/ResponseError.md)
+  * [APIリファレンス](ebsco-knowledge-services/apireference/PublicationIQ/APIReference.md)
 
 * Medical Point of Care API / Meds API
   * [Oveview](MedicalPointofCareAPI/MedsAPI\_DynaMed/MedsAPI\_DynaMed\_Overview.md)
