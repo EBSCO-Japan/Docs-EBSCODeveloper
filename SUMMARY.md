@@ -9,5 +9,5 @@
     * [レスポンスとエラーコード](ebsco-knowledge-services/apireference/PublicationIQ/Overview/ResponseError.md)
   * [APIリファレンス](ebsco-knowledge-services/apireference/PublicationIQ/APIReference.md)
 * [Medical Point of Care API / Meds API](MedicalPointofCareAPI/README.md)
-  * [Oveview](MedicalPointofCareAPI/MedsAPI\_DynaMed/MedsAPI\_DynaMed\_Overview.md)
-  * [Documentation](MedicalPointofCareAPI/MedsAPI\_DynaMed/MedsAPI\_DynaMed\_Documentation.md)
+  1. [Oveview](MedicalPointofCareAPI/MedsAPI\_DynaMed/MedsAPI\_DynaMed\_Overview.md)
+  1. [Documentation](MedicalPointofCareAPI/MedsAPI\_DynaMed/MedsAPI\_DynaMed\_Documentation.md)
