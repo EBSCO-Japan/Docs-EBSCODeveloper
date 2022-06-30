@@ -8,7 +8,7 @@ DynaMed APIのGET /searchエンドポイントでは、DynaMedのコンテンツ
 
 **基本検索の実行例：**
 
-Gather the following information for the request:
+リクエストのために、以下の情報を収集します：
 
 An access token. Please see Use the Client Credentials Grant for further information.
 A word or phrase to search.
