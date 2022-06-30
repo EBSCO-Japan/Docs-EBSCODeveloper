@@ -27,7 +27,7 @@ GET 'https://apis.ebsco.com/medsapi-dynamed/v1/search?query=heart%20attack&pubTy
 
 **レスポンス**
 
-Note:  The response below is not a complete response.  It has been truncated to highlight relevant fields.
+注：以下のレスポンスは完全なレスポンスではありません。 関連するフィールドを強調するために切り捨てています。
 
 ```
 {
