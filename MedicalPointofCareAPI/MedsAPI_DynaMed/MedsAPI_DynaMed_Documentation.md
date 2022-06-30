@@ -10,11 +10,15 @@ DynaMed APIのGET /searchエンドポイントでは、DynaMedのコンテンツ
 
 リクエストのために、以下の情報を収集します：
 
-An access token. Please see Use the Client Credentials Grant for further information.
-A word or phrase to search.
-Request
+* アクセストークン。詳しくは、[クライアント認証付与を使用する](https://developer.ebsco.com/medical-point-care-apis/dynamed/client-creds)を参照してください。
+* 検索する単語またはフレーズ。
 
+**リクエスト**
+
+```
 GET 'https://apis.ebsco.com/medsapi-dynamed/v1/search?query=heart%20attack&pubTypeId=drug&pubTypeId=condition'
+```
+
 The search above is for the URL encoded words heart and attack within the publication types drug and condition.
 
 Note: The search engine removes punctuation. Therefore, a search for heart attack is equivalent to a search for "heart attack" with no preference for the order of terms.  Also, when using Curl, the pubTypeId can be specified as a comma separated list:  &pubTypeId=drug,condition.
