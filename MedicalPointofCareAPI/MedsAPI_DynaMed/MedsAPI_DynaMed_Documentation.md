@@ -21,9 +21,9 @@ GET 'https://apis.ebsco.com/medsapi-dynamed/v1/search?query=heart%20attack&pubTy
 
 上記の検索は、URLエンコードされた単語「heart」と「attack」を、出版物のタイプdrugとconditionの中で検索しています。
 
-Note: The search engine removes punctuation. Therefore, a search for heart attack is equivalent to a search for "heart attack" with no preference for the order of terms.  Also, when using Curl, the pubTypeId can be specified as a comma separated list:  &pubTypeId=drug,condition.
+注：検索エンジンは句読点を削除します。したがって、"heart attack"の検索は、用語の順序を指定しない検索と同じです。 また、Curl を使用する場合、pubTypeId はカンマ区切りリストとして指定できます： &pubTypeId=drug,condition.
 
-Adding the initiatedBy query parameter to the request will override the default value for both the response and the transaction logs. The following are possible values for the initiatedBy query parameter: "autocomplete", "autocorrect-override-link", "didyoumean-link", "typed-in", "voice-to-text".
+リクエストに initiatedBy クエリパラメータを追加すると、レスポンスとトランザクションログの両方で デフォルト値がオーバーライドされます。initiatedBy クエリパラメータに指定できる値は、次のとおりです。「autocomplete」、「autocorrect-override-link」、「didyoumean-link」、「typed-in」、 「voice-to-text」。
 
 Response
 
