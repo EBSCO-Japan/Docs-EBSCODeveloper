@@ -6,7 +6,7 @@
 
 DynaMed APIのGET /searchエンドポイントでは、DynaMedのコンテンツを検索することができます。 検索エンドポイントには、検索条件を指定するための5つのパラメータがあります：クエリターム、出版タイプId、ページ、ページトークン、言語です。 クエリタームは、指定された言語での検索したい単語です。 出版物タイプIDは、返すべき出版物のタイプです。 ページ情報を指定することもできます。 The page is the next page of results to start from. 各ページには10個の項目があります。 ページ・トークンは、ページ分割検索に必要です。 これは、結果の最初のページで返されます。 検索クエリタームのみが必須です。
 
-To Perform a Basic Search (example):
+**基本検索の実行例：**
 
 Gather the following information for the request:
 
