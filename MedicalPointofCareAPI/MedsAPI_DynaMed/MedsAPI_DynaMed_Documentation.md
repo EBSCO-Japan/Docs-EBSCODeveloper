@@ -1,8 +1,8 @@
 # MedsAPI Dynamed Documentation
 
-Searching DynaMed Content
+## Searching DynaMed Content
 
-Basic Search
+# Basic Search
 
 The DynaMed API GET /search endpoint allows you to search DynaMed content.  The search endpoint provides five parameters for specifying the search criteria: the query term, the publication type Id, the page, the page token and language.  The query term is the word that you are searching for in the language specified.  The publication type id(s) are the type(s) of publications to return.  Page information can also be specified.  The page is the next page of results to start from.  Each page contains 10 items.  The page token is needed for a paginated search.  It is returned in the first page of results.  Only the search query term is required.
 
