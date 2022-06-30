@@ -25,11 +25,11 @@ GET 'https://apis.ebsco.com/medsapi-dynamed/v1/search?query=heart%20attack&pubTy
 
 リクエストに initiatedBy クエリパラメータを追加すると、レスポンスとトランザクションログの両方で デフォルト値がオーバーライドされます。initiatedBy クエリパラメータに指定できる値は、次のとおりです。「autocomplete」、「autocorrect-override-link」、「didyoumean-link」、「typed-in」、 「voice-to-text」。
 
-Response
+**レスポンス**
 
 Note:  The response below is not a complete response.  It has been truncated to highlight relevant fields.
 
-
+```
 {
   "_metadata": {
     "initiatedBy": "typed-in",
@@ -173,6 +173,7 @@ Note:  The response below is not a complete response.  It has been truncated to 
     }
   ]
 }
+```
 
 The response is composed of two sections: _metadata and items. The _metadata section contains information about the results.  The _metadata section has a searchTime.  The searchTime is the number of milliseconds for the actual search.  It does not reflect network latency.  The _metadata section also contains a request section that identifies the original request made by the caller.  The items array will be formatted as either image or non-image items (conditions, drugs etc).   If the image items are mixed with non-image items, the items will still have the format appropriate for an image or non-image.  The items are sorted by best match order regardless of the order that publication type ids specified.  See the Non-Image Response Details and Image Response Details sections below for more information.
 
