@@ -19,7 +19,7 @@ DynaMed APIのGET /searchエンドポイントでは、DynaMedのコンテンツ
 GET 'https://apis.ebsco.com/medsapi-dynamed/v1/search?query=heart%20attack&pubTypeId=drug&pubTypeId=condition'
 ```
 
-The search above is for the URL encoded words heart and attack within the publication types drug and condition.
+上記の検索は、URLエンコードされた単語「heart」と「attack」を、出版物のタイプdrugとconditionの中で検索しています。
 
 Note: The search engine removes punctuation. Therefore, a search for heart attack is equivalent to a search for "heart attack" with no preference for the order of terms.  Also, when using Curl, the pubTypeId can be specified as a comma separated list:  &pubTypeId=drug,condition.
 
